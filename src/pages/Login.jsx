@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { errorEmitter, successEmitter } from "../ToastifyEmitter";
 import { useAuth } from "../contextapi/UserState";
+import { BaseUrls } from "../BaseUrls";
 
 
 function Login() {
@@ -14,7 +15,7 @@ function Login() {
         e.preventDefault()
         console.log(email, password)
         try {
-            const res = await fetch("http://localhost:8000/api/v3.2/user/login", {
+            const res = await fetch(`${BaseUrls}/user/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

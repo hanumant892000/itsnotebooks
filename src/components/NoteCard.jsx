@@ -1,3 +1,4 @@
+import { BaseUrls } from "../BaseUrls";
 import { useNotes } from "../contextapi/NotesState";
 import { errorEmitter, successEmitter } from "../ToastifyEmitter";
 
@@ -8,7 +9,7 @@ const NoteCard = ({ noteId, title, description, image, createdAt, createdBy }) =
 
   const deleteNote = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v3.2/note/${noteId}`, {
+      const res = await fetch(`${BaseUrls}/note/${noteId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

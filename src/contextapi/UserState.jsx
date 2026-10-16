@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { errorEmitter, successEmitter } from '../ToastifyEmitter';
+import { BaseUrls } from '../BaseUrls';
 
 export const UserContext = createContext()
 
@@ -11,7 +12,7 @@ function UserState({ children }) {
 
     const fetchProfile = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/v3.2/user/profile", {
+            const res = await fetch(`${BaseUrls}/user/profile`, {
                 method: "GET",
                 credentials: "include"
             });
@@ -32,7 +33,7 @@ function UserState({ children }) {
 
     const logout = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/v3.2/user/logout", {
+            const res = await fetch(`${BaseUrls}/user/logout`, {
                 method: "POST",
                 credentials: "include"
             });

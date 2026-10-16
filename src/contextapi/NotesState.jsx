@@ -1,17 +1,18 @@
 import React, { createContext, useContext, useState } from 'react'
 import { errorEmitter, successEmitter } from '../ToastifyEmitter';
+import { BaseUrls } from '../BaseUrls';
 
 export const NoteContext = createContext()
 
 
 function NoteState({ children }) {
-    
+
 
     const [allNotes, setAllNotes] = useState(null)
 
     const fetchNotes = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/v3.2/Note", {
+            const res = await fetch(`${BaseUrls}/note`, {
                 method: "GET",
                 credentials: "include"
             });
@@ -22,27 +23,6 @@ function NoteState({ children }) {
             }
         } catch (error) {
             console.log(error);
-        }
-    }
-
-    const logout = async () => {
-        try {
-            const res = await fetch("http://localhost:8000/api/v3.2/Note/logout", {
-                method: "POST",
-                credentials: "include"
-            });
-            const data = await res.json();
-            console.log(data);
-            if (data.success) {
-                setIsLogin(false)
-                successEmitter(data.message)
-            }
-            else {
-                errorEmitter(data.message)
-            }
-        } catch (error) {
-            console.log(error);
-            errorEmitter("An error occurred while logging out.")
         }
     }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { errorEmitter, successEmitter } from "../ToastifyEmitter.js";
+import { BaseUrls } from "../BaseUrls.js";
 
 function Signup() {
 
@@ -13,7 +14,7 @@ function Signup() {
     e.preventDefault();
     console.log(name, email, password);
     try {
-      const res = await fetch("http://localhost:8000/api/v3.2/user/signup", {
+      const res = await fetch(`${BaseUrls}/user/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

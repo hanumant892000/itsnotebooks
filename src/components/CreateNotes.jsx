@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { errorEmitter, successEmitter } from "../ToastifyEmitter";
 import { useNotes } from "../contextapi/NotesState";
+import { BaseUrls } from "../BaseUrls";
 
 const CreateNote = () => {
   const [title, setTitle] = useState("")
@@ -19,7 +20,7 @@ const CreateNote = () => {
      formData.append("image", file)
       
     try {
-      const res = await fetch("http://localhost:8000/api/v3.2/note/create",  {
+      const res = await fetch(`${BaseUrls}/note/create`,  {
         method: "POST",
         credentials: "include", // Important: receive cookies
         body:formData
