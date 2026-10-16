@@ -13,7 +13,7 @@ connectToDB();
 
 app.use(
   cors({
-    origin:["http://localhost:5173", "https://notebookht.netlify.app"],
+    origin:"https://notebookht.netlify.app",
     credentials: true,
   }),
 );
